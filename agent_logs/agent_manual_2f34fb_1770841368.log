@@ -1,0 +1,20 @@
+Action Log:
+1. Updated Player.kt with `hasMelded` state.
+2. Updated GameTable.kt with `melds`, `meld()`, `addToMeld()`, `replaceJoker()`.
+3. Created MeldingTest.kt.
+4. Implemented Logic:
+   - Initial Meld Validation using `CombinationValidator` (42 pts + pure sequence).
+   - Subsequent Melds validation.
+   - Adding to existing Melds validation.
+   - Joker Replacement validation (swap and return to hand).
+5. Ran tests successfully (all passed).
+6. Updated task tracking and walkthrough.
+7. Committed changes (hash: 2f34fb).
+
+Results:
+- Melding mechanics are fully functional.
+- Rules for Initial Meld and Joker handling are enforced.
+
+Next Steps:
+- Implement End Game condition (empty hand).
+- UI Implementation or Advanced AI.
