@@ -36,7 +36,13 @@ You operate in a continuous loop. In each iteration, you MUST:
 
 ## Technical Priorities
 - **Orientation:** Landscape mode only.
-- **Assets:** Use card images from `res/drawable/` (format: `suit_rank.png`, `joker.png`, `red_revers.png`, `blue_revers.png`). Use these assets in the UI instead of text placeholders.
+- **Assets:** All card assets are available in `src/main/res/drawable/`.
+    - Format: `suit_rank.png` (e.g., `hearts_a.png`, `spades_10.png`).
+    - Suits: `hearts`, `diamonds`, `clubs`, `spades`.
+    - Ranks: `2` through `10`, `j`, `q`, `k`, `a`.
+    - Specials: `joker.png`, `red_revers.png`, `blue_revers.png`.
+    - Note: All images are 172x280px with rounded transparent corners.
+- **UI Implementation:** Use `androidx.compose.ui.res.painterResource` to load these assets in `PlayingCard` and `CardPlaceholder` composables.
 - **Language:** Kotlin 2.0+
 - **UI:** Jetpack Compose (Material 3).
 - **Architecture:** MVVM with Clean Architecture principles.
