@@ -1,0 +1,17 @@
+Action Log:
+1. Created CombinationValidator.kt and CombinationValidatorTest.kt.
+2. Implemented Logic:
+   - set validation (rank/suit checks)
+   - sequence validation (suit/consecutive checks, Ace low/high)
+   - point calculation.
+3. Ran tests successfully (all passed).
+4. Created Task 003 (Player Hand Management).
+5. Updated task tracking and walkthrough.
+6. Committed changes (hash: d3f061).
+
+Results:
+- Game logic for combinations and scoring is fully implemented and tested.
+- Ace and Joker handling verified.
+
+Next Steps:
+- Implement Player Hand management (Task 003).
