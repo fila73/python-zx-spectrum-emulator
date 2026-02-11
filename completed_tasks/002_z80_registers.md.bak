@@ -1,0 +1,4 @@
+# Task: CPU Architecture
+
+1. Implement Z80 register set.
+2. Create main execution loop stub.
