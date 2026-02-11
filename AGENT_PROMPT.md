@@ -35,6 +35,8 @@ You operate in a continuous loop. In each iteration, you MUST:
 4.  **Reporting:** Clearly state your achievements, focus, and any errors encountered.
 
 ## Technical Priorities
+- **Orientation:** Landscape mode only.
+- **Assets:** Use card images from `res/drawable/` (format: `suit_rank.png`, `joker.png`, `red_revers.png`, `blue_revers.png`).
 - **Language:** Kotlin 2.0+
 - **UI:** Jetpack Compose (Material 3).
 - **Architecture:** MVVM with Clean Architecture principles.

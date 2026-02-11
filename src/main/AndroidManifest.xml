@@ -15,7 +15,8 @@
             android:name=".MainActivity"
             android:exported="true"
             android:label="Žolíky"
-            android:theme="@style/Theme.Zoliky">
+            android:screenOrientation="landscape"
+        android:theme="@style/Theme.Zoliky">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
