@@ -1,0 +1,15 @@
+Action Log:
+1. Created Suit.kt, Rank.kt, Card.kt, Deck.kt, DeckTest.kt.
+2. Created build.gradle.kts, settings.gradle.kts.
+3. Attempted to run tests (failed due to missing Gradle).
+4. Created Task 002 (Basic Game Logic).
+5. Updated task tracking.
+6. Committed changes (hash: eaaafa).
+
+Results:
+- Data models implemented successfully.
+- Tests written but pending environment setup.
+- Project structure initialized for Kotlin/JVM.
+
+Next Steps:
+- Implement basic game logic (Task 002).
