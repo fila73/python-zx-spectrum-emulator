@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="sk.zoliky.model.DeckTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-02-11T21:03:43" hostname="saturnin" time="0.002">
+  <properties/>
+  <testcase name="deck should have 108 cards on initialization" classname="sk.zoliky.model.DeckTest" time="0.001"/>
+  <testcase name="deck should deal correct number of cards" classname="sk.zoliky.model.DeckTest" time="0.0"/>
+  <testcase name="shuffle should change card order" classname="sk.zoliky.model.DeckTest" time="0.0"/>
+  <testcase name="deck should contain 4 jokers" classname="sk.zoliky.model.DeckTest" time="0.0"/>
+  <testcase name="deal should throw exception if not enough cards" classname="sk.zoliky.model.DeckTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
