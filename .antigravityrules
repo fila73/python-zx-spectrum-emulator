@@ -1,0 +1,26 @@
+# Žolíky (Android) - Agent Rules
+
+## Development Guidelines
+- Prioritize Kotlin 2.0 and Jetpack Compose.
+- Follow MVVM pattern strictly.
+- Ensure all logic aligns with the rules in `docs/rules.md`.
+- **Workflow:** State Audit -> Code Analysis -> Action Phase -> Planning -> Version Control -> Reporting.
+
+## Task & Idea Management
+- **One file per item:** Keep only one task or idea per Markdown file.
+- **Manage Tasks:** Move finished task files from `current_tasks/` to `completed_tasks/`. Create new specific tasks as needed.
+- **Manage Ideas:** Add new ideas to `ideas/` (one per file).
+- **Planning:** Always create new task files in `current_tasks/` for the next logical steps before finishing an iteration.
+
+## Version Control
+- Commit after every significant milestone or successful implementation: `git add` and `git commit -m "Brief description"`.
+
+## Logging Guidelines
+- Summary of actions, results, and plans MUST be recorded in `agent_logs/`.
+- Filename format: `agent_manual_$(git rev-parse --short=6 HEAD)_$(date +%s).log`.
+- Fallback filename: `agent_manual_no-git_$(date +%s).log`.
+
+## Comment Styles
+- Use English comments followed by a Czech translation.
+- Be verbose in explaining game mechanics and UI logic.
+- **Encoding:** Always save files in **UTF-8**.
