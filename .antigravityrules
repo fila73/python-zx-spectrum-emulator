@@ -1,0 +1,43 @@
+# Sinclair ZX Spectrum Emulator - Agent Rules
+
+## Development Guidelines
+- Always prioritize cycle-accuracy.
+- Write tests in the `tests/` directory for every new feature.
+- Use `src/` for core logic and `roms/` for original binary blobs.
+- **Workflow:** State Audit -> Code Analysis -> Action Phase -> Planning -> Version Control -> Reporting.
+
+## Task & Idea Management
+- **One file per item:** Keep only one task or idea per Markdown file.
+- **Manage Tasks:** Move finished task files from `current_tasks/` to `completed_tasks/`. Create new specific tasks as needed.
+- **Manage Ideas:** Add new ideas to `ideas/` (one per file).
+- **Planning:** Before finishing each interaction, review the overall project state and create new task files in `current_tasks/` for the next logical steps. Ensure there is always at least one actionable task for the next run.
+
+## Version Control
+- After completing a significant task or a series of successful tests, you MUST commit your changes using `git add` and `git commit -m "Brief description of changes"`.
+
+## Logging Guidelines
+- You MUST record a summary of your actions, test results, and future plans in a log file for each major interaction.
+- Log files MUST be placed in `agent_logs/`.
+- Format the filename as: `agent_manual_$(git rev-parse --short=6 HEAD)_$(date +%s).log`.
+- If you cannot run shell commands to get the git hash, use `agent_manual_no-git_$(date +%s).log`.
+
+## Technical Priorities
+- **CPU:** Zilog Z80 (cycle-accurate, including undocumented opcodes).
+- **Verification:** Use known-good Z80 test suites (e.g., Fuse tests) as an oracle.
+- **Memory:** 48K model (16K ROM, 48K RAM).
+- **Video:** 256x192, attribute memory, precise ULA timing.
+
+## Comments styles
+- Use `#` for single-line comments.
+- Use `"""` for multi-line comments.
+- Use `"""` for docstrings.
+- Be verbose in comments.
+- Use comments to explain the why, and the what also
+- Use comments to explain the code logic.
+- Use comments to explain the code intent.
+- Use comments to explain the code structure.
+- Use comments to explain the code flow.
+- Comment in English.
+- After each cooment add another comment with the same content but in Czech.
+- **Environment:** Always use the `.venv` virtual environment. Run all python commands through the virtual environment (e.g., source `.venv/bin/activate`).
+- **Encoding:** Always save source files in **UTF-8** encoding. Do not use ASCII or other encodings that corrupt Czech characters.

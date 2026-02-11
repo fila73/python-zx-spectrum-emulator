@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.log
+agent_logs/
+tests/z80_standard/
+games/
+roms/
