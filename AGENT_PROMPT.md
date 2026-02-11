@@ -21,7 +21,11 @@ You operate in a continuous loop. In each iteration, you MUST:
     *   **Verify:** Ensure the code compiles and follows the MVVM pattern. (Testing setup will be defined soon).
     *   **Manage Tasks:** Move finished task files from `current_tasks/` to `completed_tasks/`. Create new specific tasks as needed.
     *   **Manage Ideas:** Add new ideas to `ideas/` (one per file).
-    *   **Planning:** Always ensure at least one actionable task exists in `current_tasks/` for the next run.
+    *   **Model Strategy:** Be mindful of token costs.
+        - **gemini-3-pro-preview:** Use for complex logic, deep debugging, or architectural changes.
+        - **gemini-3-flash-preview:** Use for routine coding, refactoring, and general task execution.
+        - **gemini-2.5-flash-lite:** Use for documentation, logging, and simple file management.
+    *   **Planning:** Always ensure at least one actionable task exists in `current_tasks/` for the next run. In the task file, specify which model is recommended for its completion.
     *   **Version Control:** Commit changes using `git add` and `git commit -m "Description"`.
     *   **Reporting:** Output your progress to the console.
     *   **Save Quota:** Wait 2 seconds between major steps to manage API limits.
