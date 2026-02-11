@@ -10,6 +10,10 @@ mkdir -p agent_logs
 # Saturnin: Unset API Key to use OAuth profile in Gemini CLI.
 unset GEMINI_API_KEY
 
+# Android SDK Setup
+export ANDROID_HOME="/home/fila/android-sdk"
+export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools"
+
 # Activation of virtual environment (if applicable)
 if [ -f ".venv/bin/activate" ]; then
     source .venv/bin/activate

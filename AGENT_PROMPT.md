@@ -19,6 +19,9 @@ You operate in a continuous loop. In each iteration, you MUST:
 3.  **Action Phase:**
     *   **Implement:** Write/modify Kotlin code in `src/`.
     *   **Verify:** Ensure the code compiles and follows the MVVM pattern. (Testing setup will be defined soon).
+    *   **Environment:** Always use the provided Android SDK.
+        - `ANDROID_HOME`: `/home/fila/android-sdk`
+        - Tools like `sdkmanager` and `adb` are in the PATH.
     *   **Manage Tasks:** Move finished task files from `current_tasks/` to `completed_tasks/`. Create new specific tasks as needed.
     *   **Manage Ideas:** Add new ideas to `ideas/` (one per file).
     *   **Model Strategy:** Be mindful of token costs.
