@@ -1,0 +1,17 @@
+Action Log:
+1. Created PlayerHand.kt and PlayerHandTest.kt.
+2. Implemented Logic:
+   - Hand manipulation (add/remove).
+   - Card sorting (by Suit then Rank, or Rank then Suit).
+   - Initial Meld Validation (>= 42 points AND pure sequence).
+3. Ran tests successfully (all passed).
+4. Created Task 004 (Game Table State).
+5. Updated task tracking and walkthrough.
+6. Committed changes (hash: 9d9074).
+
+Results:
+- PlayerHand class is fully functional and tested.
+- Meld validation logic enforces game rules correctly.
+
+Next Steps:
+- Implement Game Table State (Task 004).

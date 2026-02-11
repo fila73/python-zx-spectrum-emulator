@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="sk.zoliky.logic.GameTableTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-02-11T15:45:12" hostname="saturnin" time="0.049">
+  <properties/>
+  <testcase name="startGame should initialize players and deal cards" classname="sk.zoliky.logic.GameTableTest" time="0.044"/>
+  <testcase name="turn progression should work correctly" classname="sk.zoliky.logic.GameTableTest" time="0.001"/>
+  <testcase name="acting out of turn should fail" classname="sk.zoliky.logic.GameTableTest" time="0.001"/>
+  <testcase name="drawFromDiscard should take top card" classname="sk.zoliky.logic.GameTableTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
