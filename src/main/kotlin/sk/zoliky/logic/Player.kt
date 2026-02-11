@@ -9,6 +9,7 @@ import java.util.UUID
 class Player(val name: String) {
     val id: String = UUID.randomUUID().toString()
     val hand = PlayerHand()
+    var hasMelded: Boolean = false
 
     // Helper to check card count
     fun cardCount(): Int = hand.getCards().size

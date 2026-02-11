@@ -1,0 +1,16 @@
+Action Log:
+1. Created Player.kt, GameTable.kt, and GameTableTest.kt.
+2. Implemented Logic:
+   - Game State Management (Deck, Discard Pile, Players).
+   - Turn Logic (Start Game, Deal, Draw, Discard, Next Turn).
+   - Validation (Preventing out-of-turn actions).
+3. Ran tests successfully (all passed).
+4. Updated task tracking and walkthrough.
+5. Committed changes (hash: f42a03).
+
+Results:
+- GameTable correctly manages the flow of the game.
+- Player actions are validated against turn order.
+
+Next Steps:
+- Implement User Interface (Jetpack Compose) or further Game Logic (Melding actions).

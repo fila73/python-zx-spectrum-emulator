@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="sk.zoliky.logic.MeldingTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-02-11T20:22:23" hostname="saturnin" time="0.027">
+  <properties/>
+  <testcase name="initial meld should fail if points too low" classname="sk.zoliky.logic.MeldingTest" time="0.023"/>
+  <testcase name="initial meld should pass if restrictions met" classname="sk.zoliky.logic.MeldingTest" time="0.001"/>
+  <testcase name="replaceJoker should swap card and return Joker to hand" classname="sk.zoliky.logic.MeldingTest" time="0.001"/>
+  <testcase name="addToMeld should work for valid cards" classname="sk.zoliky.logic.MeldingTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
