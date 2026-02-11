@@ -36,7 +36,7 @@ You operate in a continuous loop. In each iteration, you MUST:
 
 ## Technical Priorities
 - **Orientation:** Landscape mode only.
-- **Assets:** Use card images from `res/drawable/` (format: `suit_rank.png`, `joker.png`, `red_revers.png`, `blue_revers.png`).
+- **Assets:** Use card images from `res/drawable/` (format: `suit_rank.png`, `joker.png`, `red_revers.png`, `blue_revers.png`). Use these assets in the UI instead of text placeholders.
 - **Language:** Kotlin 2.0+
 - **UI:** Jetpack Compose (Material 3).
 - **Architecture:** MVVM with Clean Architecture principles.
