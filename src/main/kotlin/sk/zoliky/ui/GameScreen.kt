@@ -41,17 +41,26 @@ fun GameScreen(viewModel: GameViewModel = viewModel()) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 // Deck
-                CardPlaceholder(text = "Deck\n(${state.deckCount})") {
-                    viewModel.drawCard()
-                }
+                PlayingCard(
+                    resourceId = CardResources.getCardBackResource(),
+                    onClick = { viewModel.drawCard() }
+                )
 
                 // Discard Pile
-                val discardText = if (state.discardPileTop != null) 
-                    "${state.discardPileTop?.rank}\n${state.discardPileTop?.suit}" 
-                else "Empty"
-                
-                CardPlaceholder(text = "Discard\n$discardText") {
-                    viewModel.drawFromDiscard()
+                if (state.discardPileTop != null) {
+                    PlayingCard(
+                        resourceId = CardResources.getCardResource(state.discardPileTop, androidx.compose.ui.platform.LocalContext.current),
+                        onClick = { viewModel.drawFromDiscard() }
+                    )
+                } else {
+                    // Empty slot placeholder
+                    Box(
+                        modifier = Modifier
+                            .size(80.dp, 120.dp)
+                            .background(Color.Black.copy(alpha = 0.2f))
+                    ) {
+                        Text("Empty", modifier = Modifier.align(Alignment.Center), color = Color.White)
+                    }
                 }
             }
             
@@ -61,49 +70,56 @@ fun GameScreen(viewModel: GameViewModel = viewModel()) {
             // Player Hand Area
             Text("Your Hand:")
             LazyRow(
-                modifier = Modifier.fillMaxWidth().height(120.dp),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                modifier = Modifier.fillMaxWidth().height(140.dp), // Increased height for selection offset / Zvětšená výška pro posun výběru
+                horizontalArrangement = Arrangement.spacedBy((-30).dp), // Overlap cards / Překryv karet
+                contentPadding = PaddingValues(horizontal = 16.dp)
             ) {
                 val hand = state.currentPlayer?.hand?.getCards() ?: emptyList()
                 items(count = hand.size) { index ->
                     val card = hand[index]
-                    PlayingCard(card = card) {
-                        viewModel.discardCard(index)
+                    val isSelected = state.selectedCards.contains(index)
+                    
+                    Box(modifier = Modifier.padding(top = if (isSelected) 0.dp else 20.dp)) { // Selection offset / Posun při výběru
+                         PlayingCard(
+                            resourceId = CardResources.getCardResource(card, androidx.compose.ui.platform.LocalContext.current),
+                            onClick = { viewModel.toggleCardSelection(index) }
+                        )
                     }
                 }
+            }
+            
+            // Controls for selected cards
+            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+                 Button(
+                     onClick = { 
+                         // Discard logic needs to be updated to handle specific card, for now just discard first selected
+                         // Logika odhození potřebuje aktualizaci, zatím jen odhodíme první vybranou
+                         state.selectedCards.firstOrNull()?.let { index -> viewModel.discardCard(index) }
+                     },
+                     enabled = state.selectedCards.isNotEmpty()
+                 ) {
+                     Text("Discard Selected")
+                 }
             }
         }
     }
 }
 
 @Composable
-fun CardPlaceholder(text: String, onClick: () -> Unit) {
+fun PlayingCard(resourceId: Int, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .size(80.dp, 120.dp)
             .clickable(onClick = onClick),
-        colors = CardDefaults.cardColors(containerColor = Color.White)
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.Transparent) // Content is image / Obsah je obrázek
     ) {
-        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            Text(text, color = Color.Black)
-        }
+        androidx.compose.foundation.Image(
+            painter = androidx.compose.ui.res.painterResource(id = resourceId),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = androidx.compose.ui.layout.ContentScale.Fit
+        )
     }
 }
 
-@Composable
-fun PlayingCard(card: ModelCard, onClick: () -> Unit) {
-    Card(
-        modifier = Modifier
-            .size(80.dp, 120.dp)
-            .clickable(onClick = onClick),
-        colors = CardDefaults.cardColors(containerColor = Color.White),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
-    ) {
-        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            Text(
-                text = "${card.rank}\n${card.suit}",
-                color = if (card.suit.name == "HEARTS" || card.suit.name == "DIAMONDS") Color.Red else Color.Black
-            )
-        }
-    }
-}

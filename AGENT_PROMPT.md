@@ -42,7 +42,12 @@ You operate in a continuous loop. In each iteration, you MUST:
     - Ranks: `2` through `10`, `j`, `q`, `k`, `a`.
     - Specials: `joker.png`, `red_revers.png`, `blue_revers.png`.
     - Note: All images are 172x280px with rounded transparent corners.
-- **UI Implementation:** Use `androidx.compose.ui.res.painterResource` to load these assets in `PlayingCard` and `CardPlaceholder` composables.
+- **UI Implementation:** Use `androidx.compose.ui.res.painterResource` to load assets.
+- **Visuals:** The game runs in **fullscreen** (no system bars). Use a grid-based "slot" system for the table with snap-to-grid behavior.
+- **Interaction:** Cards are moved via **Drag-and-Drop**.
+- **Rules Refinement:**
+    - Drawing from discard: allowed from 4th round, must meld immediately.
+    - Full sets of 4: flash and discard automatically.
 - **Language:** Kotlin 2.0+
 - **UI:** Jetpack Compose (Material 3).
 - **Architecture:** MVVM with Clean Architecture principles.

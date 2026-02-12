@@ -48,9 +48,21 @@ class GameViewModel : ViewModel() {
             val card = currentPlayer.hand.getCards()[cardIndex]
             gameTable.discardCard(currentPlayer.id, card)
             updateState()
+            // Clear selection on discard / Vyčistit výběr po odhození
+            uiState = uiState.copy(selectedCards = emptySet())
         } catch (e: Exception) {
              println("Error discarding card: ${e.message}")
         }
+    }
+
+    fun toggleCardSelection(index: Int) {
+        val currentSelection = uiState.selectedCards.toMutableSet()
+        if (currentSelection.contains(index)) {
+            currentSelection.remove(index)
+        } else {
+            currentSelection.add(index)
+        }
+        uiState = uiState.copy(selectedCards = currentSelection)
     }
 
     private fun updateState() {
@@ -59,7 +71,8 @@ class GameViewModel : ViewModel() {
             players = gameTable.players,
             discardPileTop = gameTable.discardPile.lastOrNull(),
             deckCount = gameTable.deck.size(),
-            meldsCount = gameTable.melds.size
+            meldsCount = gameTable.melds.size,
+            selectedCards = uiState.selectedCards // Preserve selection / Zachovat výběr
         )
     }
 }
@@ -69,5 +82,6 @@ data class GameUiState(
     val players: List<Player> = emptyList(),
     val discardPileTop: sk.zoliky.model.Card? = null,
     val deckCount: Int = 0,
-    val meldsCount: Int = 0
+    val meldsCount: Int = 0,
+    val selectedCards: Set<Int> = emptySet()
 )

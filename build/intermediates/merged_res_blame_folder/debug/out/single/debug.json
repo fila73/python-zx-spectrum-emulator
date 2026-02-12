@@ -1,18 +1,238 @@
 [
     {
+        "merged": "sk.zoliky-merged_res-45:/drawable_spades_9.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/spades_9.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_clubs_2.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/clubs_2.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_diamonds_10.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/diamonds_10.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_diamonds_5.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/diamonds_5.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_hearts_6.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/hearts_6.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_spades_2.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/spades_2.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_clubs_9.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/clubs_9.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_joker.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/joker.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_clubs_a.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/clubs_a.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_diamonds_k.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/diamonds_k.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_hearts_a.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/hearts_a.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_clubs_6.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/clubs_6.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_clubs_k.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/clubs_k.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_hearts_9.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/hearts_9.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_spades_5.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/spades_5.png"
+    },
+    {
         "merged": "sk.zoliky-merged_res-45:/drawable_ic_launcher_foreground.xml.flat",
         "source": "sk.zoliky-main-47:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_spades_k.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/spades_k.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_spades_a.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/spades_a.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_ic_launcher_background.xml.flat",
+        "source": "sk.zoliky-main-47:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_hearts_2.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/hearts_2.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_hearts_3.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/hearts_3.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_diamonds_2.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/diamonds_2.png"
     },
     {
         "merged": "sk.zoliky-merged_res-45:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
         "source": "sk.zoliky-main-47:/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
+        "merged": "sk.zoliky-merged_res-45:/drawable_spades_6.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/spades_6.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_clubs_10.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/clubs_10.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_diamonds_9.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/diamonds_9.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_clubs_5.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/clubs_5.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_diamonds_6.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/diamonds_6.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_hearts_q.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/hearts_q.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_clubs_q.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/clubs_q.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_spades_7.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/spades_7.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_clubs_4.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/clubs_4.png"
+    },
+    {
         "merged": "sk.zoliky-merged_res-45:/mipmap-anydpi-v26_ic_launcher.xml.flat",
         "source": "sk.zoliky-main-47:/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
-        "merged": "sk.zoliky-merged_res-45:/drawable_ic_launcher_background.xml.flat",
-        "source": "sk.zoliky-main-47:/drawable/ic_launcher_background.xml"
+        "merged": "sk.zoliky-merged_res-45:/drawable_hearts_4.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/hearts_4.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_hearts_10.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/hearts_10.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_diamonds_3.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/diamonds_3.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_blue_revers.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/blue_revers.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_clubs_8.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/clubs_8.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_diamonds_7.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/diamonds_7.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_spades_3.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/spades_3.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_hearts_j.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/hearts_j.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_hearts_7.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/hearts_7.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_diamonds_q.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/diamonds_q.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_diamonds_4.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/diamonds_4.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_red_revers.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/red_revers.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_clubs_3.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/clubs_3.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_hearts_5.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/hearts_5.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_spades_8.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/spades_8.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_diamonds_a.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/diamonds_a.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_diamonds_j.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/diamonds_j.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_hearts_k.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/hearts_k.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_spades_10.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/spades_10.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_spades_q.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/spades_q.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_clubs_j.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/clubs_j.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_clubs_7.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/clubs_7.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_diamonds_8.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/diamonds_8.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_spades_j.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/spades_j.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_hearts_8.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/hearts_8.png"
+    },
+    {
+        "merged": "sk.zoliky-merged_res-45:/drawable_spades_4.png.flat",
+        "source": "sk.zoliky-main-47:/drawable/spades_4.png"
     }
 ]
