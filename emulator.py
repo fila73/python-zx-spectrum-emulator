@@ -8,9 +8,9 @@ try:
     from src.ula import ULA
     from src.tape import Tape
     from src.hardware_128k import Hardware128K
-    print('DEBUG: Imports complete.', file=sys.stderr, flush=True)
+    print('--- Saturnin: Startuji emulátor ---', file=sys.stderr, flush=True)
 except Exception as e:
-    print(f'DEBUG: Import failed: {e}', file=sys.stderr, flush=True)
+    print(f'CRITICAL ERROR: Import failed: {e}', file=sys.stderr, flush=True)
     sys.exit(1)
 
 import time
@@ -48,7 +48,7 @@ def load_test_pattern(memory):
         memory.write_byte(0x4000 + i, i & 0xFF)
 
 def main():
-    print('--- Saturnin: Startuji emulátor ---')
+    print('--- Hey Saturnin: Startuji emulátor ---')
     pygame.init()
     
     from src.audio_engine import AudioEngine
@@ -277,10 +277,10 @@ def main():
     pygame.quit()
 
 if __name__ == '__main__':
-    print('DEBUG: Script is running as main. Calling main()...')
+    print("DEBUG: Script is running as main. Calling main()...")
     try:
         main()
     except Exception as e:
-        print(f'DEBUG: Exception in main(): {e}')
+        print(f"DEBUG: Exception in main(): {e}")
         raise
     input("DEBUG: Execution finished. Press Enter to exit.")
