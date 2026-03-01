@@ -8,7 +8,7 @@ try:
     from src.ula import ULA
     from src.tape import Tape
     from src.hardware_128k import Hardware128K
-    print('--- Saturnin: Startuji emulátor ---', file=sys.stderr, flush=True)
+    print('--- Hey Saturnin: Startuji emulátor ---', file=sys.stderr, flush=True)
 except Exception as e:
     print(f'CRITICAL ERROR: Import failed: {e}', file=sys.stderr, flush=True)
     sys.exit(1)
