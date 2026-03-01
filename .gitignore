@@ -8,3 +8,6 @@ roms/
 .idea/modules.xml
 .idea/python-zx-spectrum-emulator.iml
 .idea/.gitignore
+.aider*
+run_agent_qwendoline.sh
+*.swp
