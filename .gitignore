@@ -5,3 +5,6 @@ agent_logs/
 tests/z80_standard/
 games/
 roms/
+.idea/modules.xml
+.idea/python-zx-spectrum-emulator.iml
+.idea/.gitignore
