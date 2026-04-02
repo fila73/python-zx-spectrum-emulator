@@ -33,10 +33,42 @@ KEY_MAP = {
     pygame.K_a: (0xFD, 0), pygame.K_s: (0xFD, 1), pygame.K_d: (0xFD, 2), pygame.K_f: (0xFD, 3), pygame.K_g: (0xFD, 4),
     pygame.K_q: (0xFB, 0), pygame.K_w: (0xFB, 1), pygame.K_e: (0xFB, 2), pygame.K_r: (0xFB, 3), pygame.K_t: (0xFB, 4),
     pygame.K_1: (0xF7, 0), pygame.K_2: (0xF7, 1), pygame.K_3: (0xF7, 2), pygame.K_4: (0xF7, 3), pygame.K_5: (0xF7, 4),
+    pygame.K_KP1: (0xF7, 0), pygame.K_KP2: (0xF7, 1), pygame.K_KP3: (0xF7, 2), pygame.K_KP4: (0xF7, 3), pygame.K_KP5: (0xF7, 4),
     pygame.K_0: (0xEF, 0), pygame.K_9: (0xEF, 1), pygame.K_8: (0xEF, 2), pygame.K_7: (0xEF, 3), pygame.K_6: (0xEF, 4),
+    pygame.K_KP0: (0xEF, 0), pygame.K_KP9: (0xEF, 1), pygame.K_KP8: (0xEF, 2), pygame.K_KP7: (0xEF, 3), pygame.K_KP6: (0xEF, 4),
     pygame.K_p: (0xDF, 0), pygame.K_o: (0xDF, 1), pygame.K_i: (0xDF, 2), pygame.K_u: (0xDF, 3), pygame.K_y: (0xDF, 4),
-    pygame.K_RETURN: (0xBF, 0), pygame.K_l: (0xBF, 1), pygame.K_k: (0xBF, 2), pygame.K_j: (0xBF, 3), pygame.K_h: (0xBF, 4),
-    pygame.K_SPACE: (0x7F, 0), pygame.K_RSHIFT: (0x7F, 1), pygame.K_m: (0x7F, 2), pygame.K_n: (0x7F, 3), pygame.K_b: (0x7F, 4)
+    pygame.K_RETURN: (0xBF, 0), pygame.K_KP_ENTER: (0xBF, 0), pygame.K_l: (0xBF, 1), pygame.K_k: (0xBF, 2), pygame.K_j: (0xBF, 3), pygame.K_h: (0xBF, 4),
+    pygame.K_SPACE: (0x7F, 0), pygame.K_RSHIFT: (0xFE, 0), pygame.K_m: (0x7F, 2), pygame.K_n: (0x7F, 3), pygame.K_b: (0x7F, 4)
+}
+
+EXTENDED_KEY_MAP = {
+    pygame.K_BACKSPACE: [(0xFE, 0), (0xEF, 0)], # CS + 0 (Delete)
+    pygame.K_TAB: [(0xFE, 0), (0xF7, 0)],       # CS + 1 (Edit)
+    pygame.K_LEFT: [(0xFE, 0), (0xF7, 4)],      # CS + 5 (Left)
+    pygame.K_DOWN: [(0xFE, 0), (0xEF, 4)],      # CS + 6 (Down)
+    pygame.K_UP: [(0xFE, 0), (0xEF, 3)],        # CS + 7 (Up)
+    pygame.K_RIGHT: [(0xFE, 0), (0xEF, 2)],     # CS + 8 (Right)
+    pygame.K_ESCAPE: [(0xFE, 0), (0x7F, 0)],    # CS + Space (Break)
+    pygame.K_CAPSLOCK: [(0xFE, 0), (0xF7, 1)],  # CS + 2 (Caps Lock)
+    pygame.K_LALT: [(0x7F, 1)],                 # Symbol Shift (alias)
+    pygame.K_RALT: [(0x7F, 1)],                 # Symbol Shift (alias)
+    pygame.K_LCTRL: [(0x7F, 1)],                # Symbol Shift (alias)
+    pygame.K_RCTRL: [(0x7F, 1)],                # Symbol Shift (alias)
+}
+
+UNICODE_MAP = {
+    '!': [(0x7F, 1), (0xF7, 0)], '@': [(0x7F, 1), (0xF7, 1)],
+    '#': [(0x7F, 1), (0xF7, 2)], '$': [(0x7F, 1), (0xF7, 3)],
+    '%': [(0x7F, 1), (0xF7, 4)], '&': [(0x7F, 1), (0xEF, 4)],
+    "'": [(0x7F, 1), (0xEF, 3)], '(': [(0x7F, 1), (0xEF, 2)],
+    ')': [(0x7F, 1), (0xEF, 1)], '_': [(0x7F, 1), (0xEF, 0)],
+    '-': [(0x7F, 1), (0xBF, 3)], '+': [(0x7F, 1), (0xBF, 2)],
+    '=': [(0x7F, 1), (0xBF, 1)], ',': [(0x7F, 1), (0x7F, 3)],
+    '.': [(0x7F, 1), (0x7F, 2)], '*': [(0x7F, 1), (0x7F, 4)],
+    '/': [(0x7F, 1), (0xFE, 4)], ';': [(0x7F, 1), (0xDF, 1)],
+    '"': [(0x7F, 1), (0xDF, 0)], '?': [(0x7F, 1), (0xFE, 3)],
+    ':': [(0x7F, 1), (0xFE, 1)], '<': [(0x7F, 1), (0xFB, 3)],
+    '>': [(0x7F, 1), (0xFB, 4)], '^': [(0x7F, 1), (0xBF, 4)]
 }
 
 def load_test_pattern(memory):
@@ -68,34 +100,45 @@ def main():
     
     pygame.display.set_caption('ZX Spectrum Emulator')
     
-    is_128k = "--128" in sys.argv
+    is_128k = "--128" in sys.argv or "--+2" in sys.argv
     
     mixing_mode = 'mono'
     if "--abc" in sys.argv: mixing_mode = 'abc'
     elif "--acb" in sys.argv: mixing_mode = 'acb'
     
+    if "--+3" in sys.argv or "--zx80" in sys.argv or "--zx81" in sys.argv:
+        print("CRITICAL ERROR: Omlouvám se, ale modely +3, ZX80 a ZX81 vyžadují jinou architekturu paměti a videa než momentálně máme implementovanou.")
+        audio_engine.stop()
+        pygame.quit()
+        return
+
     memory = Memory(is_128k=is_128k)
     
     # 1. NAČTENÍ ROM
-    if is_128k:
-        try:
-            with open("roms/128.rom", "rb") as f:
-                rom_data = f.read()
+    if "--+2" in sys.argv:
+        rom_path = "roms/128+2.rom"
+        rom_name = "+2"
+    elif is_128k:
+        rom_path = "roms/128.rom"
+        rom_name = "128K"
+    else:
+        rom_path = "roms/48.rom"
+        rom_name = "48K"
+
+    try:
+        with open(rom_path, "rb") as f:
+            rom_data = f.read()
+            if is_128k:
                 memory.load_rom(rom_data[0:16384], bank=0)
                 memory.load_rom(rom_data[16384:32768], bank=1)
-            print("--- Saturnin: ROM 128K úspěšně načtena ---")
-        except FileNotFoundError:
-            print("CRITICAL ERROR: Soubor roms/128.rom nebyl nalezen!")
-            return
-    else:
-        try:
-            with open("roms/48.rom", "rb") as f:
-                rom_data = f.read()
+            else:
                 memory.load_rom(rom_data)
-            print("--- Saturnin: ROM 48K úspěšně načtena ---")
-        except FileNotFoundError:
-            print("CRITICAL ERROR: Soubor roms/48.rom nebyl nalezen!")
-            return
+        print(f"--- Saturnin: ROM {rom_name} úspěšně načtena ze {rom_path} ---")
+    except FileNotFoundError:
+        print(f"CRITICAL ERROR: Soubor {rom_path} nebyl nalezen!")
+        audio_engine.stop()
+        pygame.quit()
+        return
 
     io_bus = IOBus()
     ula = ULA(memory, is_128k=is_128k)
@@ -150,6 +193,9 @@ def main():
     print(f"DEBUG: Timing Target: {target_fps:.2f} FPS, {frame_cycles} cycles/frame")
 
     running = True
+    keyboard_mode = "TYPING"
+    pygame.display.set_caption(f"ZX Spectrum Emulator - {keyboard_mode} MODE")
+    held_physical_keys = {}
     start_real_time = time.perf_counter()
     next_frame_time_ns = time.perf_counter_ns()
     
@@ -162,10 +208,16 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
             
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_F4:
+                keyboard_mode = "GAME" if keyboard_mode == "TYPING" else "TYPING"
+                pygame.display.set_caption(f"ZX Spectrum Emulator - {keyboard_mode} MODE")
+                print(f"--- Saturnin: Klávesnice přepnuta do režimu {keyboard_mode} ---")
+            
             if event.type == pygame.KEYDOWN and event.key == pygame.K_F8:
                 debug_enabled = not debug_enabled
                 current_width = WINDOW_WIDTH_DEBUG if debug_enabled else WINDOW_WIDTH
                 screen = pygame.display.set_mode((current_width, WINDOW_HEIGHT))
+                pygame.display.set_caption(f"ZX Spectrum Emulator - {keyboard_mode} MODE")
                 debugger.surface = screen # Update surface reference
                 if not debug_enabled:
                     debugger.paused = False # Resume if disabling debugger
@@ -176,9 +228,42 @@ def main():
             
             if event.type == pygame.KEYDOWN or event.type == pygame.KEYUP:
                 pressed = (event.type == pygame.KEYDOWN)
-                if event.key in KEY_MAP:
-                    row, bit = KEY_MAP[event.key]
-                    ula.set_key(row, bit, pressed)
+                if pressed:
+                    mappings = []
+                    is_number_row = (pygame.K_0 <= event.key <= pygame.K_9)
+                    
+                    if keyboard_mode == "TYPING" and not is_number_row and hasattr(event, 'unicode') and event.unicode in UNICODE_MAP:
+                        mappings = UNICODE_MAP[event.unicode]
+                    elif event.key in EXTENDED_KEY_MAP:
+                        mappings = EXTENDED_KEY_MAP[event.key]
+                    elif event.key in KEY_MAP:
+                        mappings = [KEY_MAP[event.key]]
+                    
+                    if mappings:
+                        held_physical_keys[event.key] = mappings
+                else:
+                    if event.key in held_physical_keys:
+                        del held_physical_keys[event.key]
+                
+                # Přepočítáme celou matici klávesnice pro vyřešení konfliktů a aliasů
+                for row_addr in ula.keyboard_rows:
+                    ula.keyboard_rows[row_addr] = 0x1F
+                
+                # Zjištění, jestli nedržíme nějaký alias obsahující Symbol Shift
+                has_ss_alias = False
+                for mappings in held_physical_keys.values():
+                    for row, bit in mappings:
+                        if (row, bit) == (0x7F, 1):
+                            has_ss_alias = True
+                            break
+                            
+                # Aplikace všech aktuálně stisknutých kláves
+                for mappings in held_physical_keys.values():
+                    for row, bit in mappings:
+                        # Pokud píšeme znak přes alias s SS, fyzický Shift (CS) se musí "zamlčet"
+                        if has_ss_alias and (row, bit) == (0xFE, 0):
+                            continue
+                        ula.set_key(row, bit, True)
         
         # Execution Logic
         t0 = time.perf_counter()
@@ -278,9 +363,21 @@ def main():
 
 if __name__ == '__main__':
     print("DEBUG: Script is running as main. Calling main()...")
+    
+    has_error = False
     try:
         main()
     except Exception as e:
+        has_error = True
+        import traceback
+        traceback.print_exc()
         print(f"DEBUG: Exception in main(): {e}")
-        raise
-    input("DEBUG: Execution finished. Press Enter to exit.")
+    
+    if has_error:
+        try:
+            input("DEBUG: Execution finished with error. Press Enter to exit.")
+        except (EOFError, KeyboardInterrupt):
+            pass
+            
+    import os
+    os._exit(0)
