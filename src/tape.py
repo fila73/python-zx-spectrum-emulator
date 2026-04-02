@@ -1,4 +1,5 @@
 import struct
+import zipfile
 
 class Tape:
     def __init__(self):
@@ -8,26 +9,48 @@ class Tape:
 
     def load_file(self, filename):
         """
-        Load and parse a .TAP or .TZX file.
-        Načte a analyzuje .TAP nebo .TZX soubor.
+        Load and parse a .TAP or .TZX file, optionally from inside a .ZIP file.
+        Načte a analyzuje .TAP nebo .TZX soubor, i zevnitř .ZIP archivu.
         """
         try:
-            with open(filename, 'rb') as f:
-                data = f.read()
+            filename_lower = filename.lower()
             
-            self.blocks = []
-            if filename.lower().endswith('.tap'):
-                self._load_tap(data)
-            elif filename.lower().endswith('.tzx'):
-                self._load_tzx(data)
+            if filename_lower.endswith('.zip'):
+                with zipfile.ZipFile(filename, 'r') as zf:
+                    for zipped_file in zf.namelist():
+                        zf_lower = zipped_file.lower()
+                        if zf_lower.endswith('.tap') or zf_lower.endswith('.tzx'):
+                            data = zf.read(zipped_file)
+                            self.blocks = []
+                            if zf_lower.endswith('.tap'):
+                                self._load_tap(data)
+                            elif zf_lower.endswith('.tzx'):
+                                self._load_tzx(data)
+                                
+                            self.current_block = 0
+                            self.is_loaded = True
+                            print(f"Tape loaded: {zipped_file} from {filename} ({len(self.blocks)} blocks)")
+                            return True
+                    print(f"No supported format (.tap, .tzx) found in ZIP: {filename}")
+                    return False
+                    
             else:
-                print(f"Unknown tape format: {filename}")
-                return False
+                with open(filename, 'rb') as f:
+                    data = f.read()
                 
-            self.current_block = 0
-            self.is_loaded = True
-            print(f"Tape loaded: {filename} ({len(self.blocks)} blocks)")
-            return True
+                self.blocks = []
+                if filename_lower.endswith('.tap'):
+                    self._load_tap(data)
+                elif filename_lower.endswith('.tzx'):
+                    self._load_tzx(data)
+                else:
+                    print(f"Unknown tape format: {filename}")
+                    return False
+                    
+                self.current_block = 0
+                self.is_loaded = True
+                print(f"Tape loaded: {filename} ({len(self.blocks)} blocks)")
+                return True
         except Exception as e:
             print(f"Error loading tape: {e}")
             return False
