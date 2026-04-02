@@ -422,6 +422,62 @@ class ULA:
         # Reuse pre-allocated buffer
         buffer = self.screen_buffer
         
+        if hasattr(self.memory, 'is_zx80') and (self.memory.is_zx80 or self.memory.is_zx81):
+            # ZX80 / ZX81 High-Level Emulation for Screen
+            # Vykreslení obrazovky na vysoké úrovni
+            buffer[:, :] = [255, 255, 255] # White background
+            
+            d_file = self.memory.read_word(0x400C)
+            if d_file == 0:
+                return buffer
+                
+            font_base = 0x0E00 if self.memory.is_zx80 else 0x1E00
+            
+            ptr = d_file + 1  # Often D_FILE points to the very first HALT or the byte before it. Actually D_FILE points to the first HALT (0x76) which starts the screen.
+            # Skip the first 0x76 if it is one:
+            if self.memory.read_byte(d_file) == 0x76:
+                ptr = d_file + 1
+            else:
+                ptr = d_file
+
+            cx, cy = 0, 0
+            
+            # Start rendering at center roughly, border is 32px
+            border_size = 32
+            
+            while cy < 24 and ptr < 0x8000:
+                char_byte = self.memory.read_byte(ptr)
+                ptr += 1
+                
+                if char_byte == 0x76: # New line
+                    cx = 0
+                    cy += 1
+                    continue
+                    
+                if cx < 32:
+                    # Render character
+                    is_inverse = (char_byte & 0x80) != 0
+                    char_code = char_byte & 0x3F
+                    
+                    font_addr = font_base + (char_code * 8)
+                    screen_x = border_size + cx * 8
+                    screen_y = border_size + cy * 8
+                    
+                    for row in range(8):
+                        pattern = self.memory.read_byte(font_addr + row)
+                        if is_inverse:
+                            pattern = ~pattern & 0xFF
+                            
+                        # Draw 8 pixels
+                        for bit in range(8):
+                            pixel = (pattern >> (7 - bit)) & 1
+                            if pixel:
+                                buffer[screen_y + row, screen_x + bit] = [0, 0, 0] # Black ink
+                    cx += 1
+
+            self.border_events = []
+            return buffer
+            
         # Sort border events just in case
         self.border_events.sort(key=lambda x: x[0])
         

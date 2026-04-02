@@ -100,35 +100,52 @@ def main():
     
     pygame.display.set_caption('ZX Spectrum Emulator')
     
-    is_128k = "--128" in sys.argv or "--+2" in sys.argv
+    model = "48K"
+    if "--+3" in sys.argv: model = "+3"
+    elif "--zx81" in sys.argv: model = "ZX81"
+    elif "--zx80" in sys.argv: model = "ZX80"
+    elif "--16" in sys.argv: model = "16K"
+    elif "--+2" in sys.argv: model = "+2"
+    elif "--128" in sys.argv: model = "128K"
+    
+    is_128k = model in ["128K", "+2"]
+    is_plus3 = model == "+3"
     
     mixing_mode = 'mono'
     if "--abc" in sys.argv: mixing_mode = 'abc'
     elif "--acb" in sys.argv: mixing_mode = 'acb'
-    
-    if "--+3" in sys.argv or "--zx80" in sys.argv or "--zx81" in sys.argv:
-        print("CRITICAL ERROR: Omlouvám se, ale modely +3, ZX80 a ZX81 vyžadují jinou architekturu paměti a videa než momentálně máme implementovanou.")
-        audio_engine.stop()
-        pygame.quit()
-        return
 
-    memory = Memory(is_128k=is_128k)
+    memory = Memory(model=model)
     
     # 1. NAČTENÍ ROM
-    if "--+2" in sys.argv:
+    if model == "+3":
+        rom_path = "roms/128+3.rom"
+        rom_name = "+3"
+    elif model == "ZX81":
+        rom_path = "roms/zx81.rom"
+        rom_name = "ZX81"
+    elif model == "ZX80":
+        rom_path = "roms/zx80.rom"
+        rom_name = "ZX80"
+    elif model == "+2":
         rom_path = "roms/128+2.rom"
         rom_name = "+2"
-    elif is_128k:
+    elif model == "128K":
         rom_path = "roms/128.rom"
         rom_name = "128K"
     else:
         rom_path = "roms/48.rom"
-        rom_name = "48K"
+        rom_name = model
 
     try:
         with open(rom_path, "rb") as f:
             rom_data = f.read()
-            if is_128k:
+            if is_plus3:
+                memory.load_rom(rom_data[0:16384], bank=0)
+                memory.load_rom(rom_data[16384:32768], bank=1)
+                memory.load_rom(rom_data[32768:49152], bank=2)
+                memory.load_rom(rom_data[49152:65536], bank=3)
+            elif is_128k:
                 memory.load_rom(rom_data[0:16384], bank=0)
                 memory.load_rom(rom_data[16384:32768], bank=1)
             else:
@@ -141,15 +158,15 @@ def main():
         return
 
     io_bus = IOBus()
-    ula = ULA(memory, is_128k=is_128k)
+    ula = ULA(memory, is_128k=(is_128k or is_plus3))
     io_bus.add_device(ula)
     
-    if is_128k:
+    if is_128k or is_plus3:
         hw128 = Hardware128K(memory, mixing_mode=mixing_mode)
         io_bus.add_device(hw128)
     
     # Timing constants
-    if is_128k:
+    if is_128k or is_plus3:
         frame_cycles = 70908
         target_fps = 50.021 # 3.5469 MHz / 70908
     else:
@@ -167,7 +184,7 @@ def main():
     tape = Tape()
     #tape_path = "games/arkanoid.tap" # Default
     #tape_path = "games/jetpac.tap"
-    tape_path = "games/chuckieegg1.tap"
+    tape_path = "games/Chuckieegg1.zip"
     
     # Parse arguments for tape path (skip flags)
     for arg in sys.argv[1:]:
@@ -282,15 +299,27 @@ def main():
                 pass
         else:
             # Normal Execution
+            # Vytvoření I/O událostí včetně VBLANK přerušení
+            # Na ZX Spectru se maskovatelné přerušení generuje automaticky
             target_cycles = cpu.cycles + frame_cycles
             try:
                 while cpu.cycles < target_cycles:
                     cpu.step()
-                cpu.interrupt()
             except Exception as e:
                 print(f'CPU Error: {e}')
-                if debug_enabled: # Only pause if debugger is enabled (or enable it?)
-                    debugger.paused = True 
+                if debug_enabled:
+                    debugger.paused = True
+            # Hardware timers specific behavior at end of frame
+            if hasattr(memory, 'is_zx80') and memory.is_zx80:
+                frames = memory.read_word(16414)
+                memory.write_word(16414, (frames - 1) & 0xFFFF)
+            elif hasattr(memory, 'is_zx81') and memory.is_zx81:
+                frames = memory.read_word(16436)
+                memory.write_word(16436, (frames - 1) & 0xFFFF)
+            elif cpu.iff1:
+                cpu.interrupt()
+            
+            # Zpracování zvuku pro aktuální snímek:
         
         actual_cycles = cpu.cycles - cycles_before
         t_cpu = (time.perf_counter() - t0) * 1000

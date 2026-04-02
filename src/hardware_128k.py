@@ -38,10 +38,13 @@ class Hardware128K:
         Write to 128K ports.
         Zápis do portů 128K.
         """
-        # Port 0x7FFD (Memory Management)
+        # Port 0x7FFD (Memory Management) and 0x1FFD (+3 Memory Management)
         # A15=0, A1=0
         if (port & 0x8002) == 0x0000:
-            self.memory.write_port_7ffd(value)
+            if self.memory.is_plus3 and (port & 0xF002) == 0x1000:
+                self.memory.write_port_1ffd(value)
+            else:
+                self.memory.write_port_7ffd(value)
             
         # Port 0xFFFD (AY Register Select)
         # A15=1, A14=1, A1=0
