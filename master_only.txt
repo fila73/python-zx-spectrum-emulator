@@ -1,0 +1,2 @@
+c95862f README.md update
+92678d0 ZX Spectrum Emulator - Stable Release (Clean History)
